@@ -9,6 +9,8 @@ This system allows you to script the mouse yourself. The following functionality
 
 The mouse cursors are edited from Pixel Perfect and Freepik and are free to use if you credit them.
 
+*The script assumes you have [Yanfly Ace Core Engine](https://github.com/Archeia/YEARepo/blob/master/Core/Ace_Core_Engine.rb) and [Yanfly Ace Message System](https://github.com/Archeia/YEARepo/blob/master/Core/Ace_Message_System.rb). If you don't have them, you will need to edit line 312.*
+
 ## Documentation
 
 Script calls:
