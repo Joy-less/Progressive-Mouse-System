@@ -1,6 +1,12 @@
 # Progressive Mouse System
 By default, RPG Maker VX Ace does not allow you to use the mouse. When I looked for scripts online, I was disappointed by the lack of decent mouse scripts available. This script is a rewrite of "Basic Mouse System v2.7h" by V.M of D.T, which had the right idea but was a mess to work with. I figured I might as well release this for you to use.
 
+This system allows you to script the mouse yourself. The following functionality is built-in:
+- LMB to use menu buttons
+- LMB to move to tile
+- LMB to activate events from afar
+- RMB to open menu / go back in menu
+
 The mouse cursors are edited from Pixel Perfect and Freepik and are free to use if you credit them.
 
 ## Documentation
