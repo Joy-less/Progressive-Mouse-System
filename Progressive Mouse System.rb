@@ -38,15 +38,15 @@
 #==============================================================================
 
 MOUSE_ICON = 528                                 # The number of the mouse icon
-MOUSE_OFFSET = {                          # Mouse offset in pixels of each icon
+MOUSE_ICON_OFFSET = {                     # Mouse offset in pixels of each icon
   true => [0, 0],                           # true is for all unspecified icons
   529 => [-8, 0],
 }
 MOUSE_KEEP_WITHIN_WINDOW = true        # Lock the rendered cursor in the window
 MOUSE_CLICK_MUST_BE_WITHIN_BUTTON = true    # Only accept clicks within buttons
-FADE_AFTER_DURATION = true                       # Mouse fades away if not used
-FRAMES_BEFORE_FADE = 600                     # Frames of inactivity before fade
-FADE_DURATION_FRAMES = 60                                # Fade duration frames
+MOUSE_FADE_ENABLED = true                        # Mouse fades away if not used
+MOUSE_FRAMES_BEFORE_FADE = 600               # Frames of inactivity before fade
+MOUSE_FADE_DURATION_FRAMES = 60                          # Fade duration frames
 
 class Mouse
   # Win32 API calls
@@ -161,19 +161,19 @@ class Mouse
     if @is_enabled == false then
       @mouse_sprite.opacity = 0
       
-    elsif FADE_AFTER_DURATION == true then
+    elsif MOUSE_FADE_ENABLED == true then
       if @moved_mouse == true then
         @transparency = 0
       else
         @transparency += 1
       end
-      if @transparency > FRAMES_BEFORE_FADE then
-        @transparency = FRAMES_BEFORE_FADE + FADE_DURATION_FRAMES if @transparency > FRAMES_BEFORE_FADE + FADE_DURATION_FRAMES
+      if @transparency > MOUSE_FRAMES_BEFORE_FADE then
+        @transparency = MOUSE_FRAMES_BEFORE_FADE + MOUSE_FADE_DURATION_FRAMES if @transparency > MOUSE_FRAMES_BEFORE_FADE + MOUSE_FADE_DURATION_FRAMES
         @transparency_original_bitmap = @mouse_sprite.bitmap if !@transparency_original_bitmap
         
         @mouse_sprite.bitmap = @transparency_original_bitmap
         
-        @mouse_sprite.opacity = 255 - (@transparency.to_f - FRAMES_BEFORE_FADE) / FADE_DURATION_FRAMES * 255
+        @mouse_sprite.opacity = 255 - (@transparency.to_f - MOUSE_FRAMES_BEFORE_FADE) / MOUSE_FADE_DURATION_FRAMES * 255
       else
         @mouse_sprite.opacity = 255
       end
@@ -203,12 +203,12 @@ class Mouse
   def update_mouse_position
     @mouse_sprite.x, @mouse_sprite.y = @mouse_pos_x, @mouse_pos_y
     
-    mouse_offset = MOUSE_OFFSET[@temporary_icon]
-    if !mouse_offset then
-      mouse_offset = MOUSE_OFFSET[true]
+    mouse_icon_offset = MOUSE_ICON_OFFSET[@temporary_icon]
+    if !mouse_icon_offset then
+      mouse_icon_offset = MOUSE_ICON_OFFSET[true]
     end
-    @mouse_sprite.x += mouse_offset[0]
-    @mouse_sprite.y += mouse_offset[1]
+    @mouse_sprite.x += mouse_icon_offset[0]
+    @mouse_sprite.y += mouse_icon_offset[1]
   end
   
   def update
