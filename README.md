@@ -1,5 +1,5 @@
 # Progressive Mouse System
-By default, RPG Maker VX Ace does not allow you to use the mouse. When I looked for scripts online, I was disappointed by the lack of decent mouse scripts available. This script is a rewrite of [Basic Mouse System v2.7h](https://forums.rpgmakerweb.com/index.php?threads/basic-mouse-system-addons.1752), which had the right idea but was a mess to work with. I figured I might as well release this for you to use.
+By default, RPG Maker VX Ace does not allow you to use the mouse. When I looked for scripts online, I was disappointed by the lack of decent mouse scripts available. This script is a rewrite of [Basic Mouse System v2.7h](https://forums.rpgmakerweb.com/index.php?threads/basic-mouse-system-addons.1752), which had the right idea but was messy to work with. I figured I might as well release this for you to use.
 
 This system allows you to script the mouse yourself. The following functionality is built-in:
 - LMB to use menu buttons
