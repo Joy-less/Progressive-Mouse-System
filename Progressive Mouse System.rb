@@ -28,7 +28,7 @@
 #    $mouse.set_mouse_enabled(enabled = !@is_enabled)
 #      Toggles the mouse
 #    
-#    is_triggered_from_afar = $event_triggered_from_afar
+#    is_triggered_from_afar = $mouse.event_triggered_from_afar?
 #      Returns true if the last started event was triggered from afar
 #    
 #  Event names:
@@ -157,6 +157,13 @@ class Mouse
   
   def set_mouse_enabled(enabled = !@is_enabled)
     @is_enabled = enabled
+  end
+
+  def event_triggered_from_afar?
+    return @event_triggered_from_afar
+  end
+  def event_triggered_from_afar=(value)
+    @event_triggered_from_afar = value
   end
 
   
@@ -506,7 +513,7 @@ class Game_Event
   end
   alias mouse_start start
   def start(triggered_from_afar = false)
-    $event_triggered_from_afar = triggered_from_afar
+    $mouse.event_triggered_from_afar = triggered_from_afar
     mouse_start
   end
 end
