@@ -28,6 +28,9 @@
 #    $mouse.set_mouse_enabled(enabled = !@is_enabled)
 #      Toggles the mouse
 #    
+#    is_triggered_from_afar = $event_triggered_from_afar
+#      Returns true if the last started event was triggered from afar
+#    
 #  Event names:
 #    Put these codes in the name of an event:
 #      T:# - event can be triggered from afar by mouse click, # is the maximum
@@ -486,7 +489,7 @@ class Game_Player < Game_Character
       next unless activation_distance and magnitude(x - @x, y - @y) <= activation_distance
       # If event is triggered by action button, player touch or event touch
       if event.trigger_in?(triggers)
-        event.start
+        event.start(true)
         return true
       end
     end
@@ -500,6 +503,11 @@ class Game_Event
   end
   def get_mouse_icon
     return @event.name.downcase =~ /i:(\d+)/ ? $1.to_i : false
+  end
+  alias mouse_start start
+  def start(triggered_from_afar = false)
+    $event_triggered_from_afar = triggered_from_afar
+    mouse_start
   end
 end
 
