@@ -226,6 +226,12 @@ class Mouse
     update_transparency
   end
   
+  def reinitialize_if_disposed
+    if @mouse_sprite.disposed?
+      initialize
+    end
+  end
+  
   def initialize(mouse_icon = MOUSE_ICON, keep_within_window = MOUSE_KEEP_WITHIN_WINDOW)
     # Set class instance variables
     @mouse_icon = mouse_icon
@@ -516,6 +522,14 @@ class Scene_Base
   end
   def mouse_cursor
     $mouse.update
+  end
+end
+
+class Scene_Title < Scene_Base
+  alias mouse_start start
+  def start
+    $mouse.reinitialize_if_disposed
+    mouse_start
   end
 end
 
