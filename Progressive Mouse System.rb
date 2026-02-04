@@ -34,10 +34,10 @@
 #  Event names:
 #    Put these codes in the name of an event:
 #      T:# - event can be triggered from afar by mouse click, # is the maximum
-#            number of tiles distance
+#            number of tiles distance, ending with ! if only mouse-triggerable
 #      I:# - where # is the icon index to change the cursor to on hover
 #      
-#      Example: Character I:262 T:5
+#      Example: Character I:262 T:5!
 #==============================================================================
 
 MOUSE_ICON = 528                                 # The number of the mouse icon
@@ -511,8 +511,16 @@ class Game_Event
   def get_mouse_icon
     return @event.name.downcase =~ /i:(\d+)/ ? $1.to_i : false
   end
+  def get_trigger_mouse_only
+    return @event.name.downcase =~ /t:(\d+\!)/ ? true : false
+  end
   alias mouse_start start
   def start(triggered_from_afar = false)
+    # If event is mouse-trigger-only and event was triggered
+    # by action button, player touch or event touch
+    if get_trigger_mouse_only and (!triggered_from_afar and trigger_in?([0,1,2]))
+      return
+    end
     $mouse.event_triggered_from_afar = triggered_from_afar
     mouse_start
   end
