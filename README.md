@@ -37,11 +37,14 @@ Script calls:
     $mouse.set_mouse_enabled(enabled = !@is_enabled)
       Toggles the mouse
     
+    is_triggered_from_afar = $mouse.event_triggered_from_afar?
+      Returns true if the last started event was triggered from afar
+    
 Event names:
   
     Put these codes in the name of an event:
       T:# - event can be triggered from afar by mouse click, # is the maximum
-            number of tiles distance
+            number of tiles distance, ending with ! if only mouse-triggerable
       I:# - where # is the icon index to change the cursor to on hover
       
-      Example: Character I:262 T:5
+      Example: Character I:262 T:5!
