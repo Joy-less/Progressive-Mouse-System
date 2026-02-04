@@ -315,7 +315,8 @@ class Window_Message < Window_Base
     self.pause = true
     wait(10)
     Fiber.yield until Input.trigger?(:B) || Input.trigger?(:C) ||
-      (!$mouse.disabled? and $mouse.left_button_down?) || Input.press?(YEA::MESSAGE::TEXT_SKIP)
+      (!$mouse.disabled? and $mouse.left_button_down?) ||
+      (defined?(YEA::MESSAGE::TEXT_SKIP) && Input.press?(YEA::MESSAGE::TEXT_SKIP))
     Input.update
     self.pause = false
   end
